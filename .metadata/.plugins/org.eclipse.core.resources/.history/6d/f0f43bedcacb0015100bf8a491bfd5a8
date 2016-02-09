@@ -1,0 +1,108 @@
+package aAnalyze;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+//import javax.swing.JFrame;
+
+class Slice {
+	String applicationName;
+	String applicationRating;
+  Color color;
+  ArrayList<String> applicationNum;
+  ArrayList<String> applicationRat;
+
+  public Slice(String applicationName,String applicationRating, Color color) {
+    this.applicationName = applicationName;
+    this.applicationRating=applicationRating;
+    this.color = color;
+  }
+
+
+  public Slice(ArrayList<String> applicationName,ArrayList<String> applicationRating, Color color) {
+    this.applicationName = applicationNum;
+    this.applicationRating=applicationRatg;
+    this.color = color;
+  }
+
+  
+  public String getApplicationName() {
+	return applicationName;
+}
+
+public void setApplicationName(String applicationName) {
+	this.applicationName = applicationName;
+}
+
+public String getApplicationRating() {
+	return applicationRating;
+}
+
+public void setApplicationRating(String applicationRating) {
+	this.applicationRating = applicationRating;
+}
+
+public Color getColor() {
+	return color;
+}
+
+public void setColor(Color color) {
+	this.color = color;
+}
+}
+
+@SuppressWarnings("serial")
+class MyComponent extends JComponent {
+	ArrayList<Slice> sliceArray;
+	ArrayList<String> applicationName;
+	ArrayList<String> applicationRating;
+	Color color;
+	{
+	for(int i=0;i<applicationName.size();i++)
+	{
+		Color dash;
+		if(i%2==0)
+			dash=Color.blue;
+		else
+			dash=Color.red;
+  Slice slice=new Slice(applicationName.get(i),applicationRating.get(i),dash);
+  	sliceArray.add(slice);
+  	System.out.println("sliceArray at location 1--->"+sliceArray);
+	}
+	}
+	
+	/* Slice[] slices = { new Slice(5, Color.black), new Slice(33, Color.green),
+      new Slice(20, Color.yellow), new Slice(15, Color.red) };
+*/
+  MyComponent() {
+
+  }
+  public void paint(Graphics g) {
+	  System.out.println("sliceArray at location 2--->"+sliceArray);
+    drawPie((Graphics2D) g, getBounds(), sliceArray);
+  }
+
+  void drawPie(Graphics2D g, Rectangle area,ArrayList<Slice>  sliceArray) {
+    double total = 0.0D;
+    for (int i = 0; i < sliceArray.size(); i++) {
+      total += Integer.parseInt(sliceArray.get(i).getApplicationRating()) ;
+    }
+
+    double curValue = 0.0D;
+    int startAngle = 0;
+    for (int i = 0; i < sliceArray.size(); i++) {
+      startAngle = (int) (curValue * 360 / total);
+      int arcAngle = (int) (Integer.parseInt(sliceArray.get(i).getApplicationRating()) * 360 / total);
+
+      g.setColor(sliceArray.get(i).color);
+      g.fillArc(area.x, area.y, area.width, area.height, startAngle, arcAngle);
+      curValue += Integer.parseInt(sliceArray.get(i).getApplicationRating());
+    }
+  }
+}
+
+

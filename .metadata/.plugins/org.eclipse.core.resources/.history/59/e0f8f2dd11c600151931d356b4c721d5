@@ -1,0 +1,70 @@
+package Scrape;
+
+import java.io.*;
+import java.util.List;
+
+
+public class ScrapeMain {
+
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		String filePath = "C:/Concordia/SDM/Assignment1/input";
+		try
+		{
+			System.out.println("File path : "+filePath);
+			filePath+="/input.csv";
+			File f=new File(filePath);
+			System.out.println("File : "+ f.getName());
+			scrapeFile(f);
+		}
+		catch(FileNotFoundException fnf)
+		{
+			System.out.println("File not found at the specified location!");
+		}
+	}
+
+	public static void scrapeFile(File f) throws IOException
+	{
+		try
+		{
+			
+			
+			Reader r= new FileReader(f);
+			BufferedReader br=new BufferedReader(r);
+			int i =0;
+			while(br.readLine()!=null)
+			{
+				String data=br.readLine();
+			
+				if(i>0)
+				{
+				//	if(data.startsWith("\"https"))
+				
+
+					String temp[]=data.split(";");
+				System.out.println("Data :"+temp[0]);
+					String scrapeURL[];
+					List l=<String>new List();
+					scrapeURL[]+=temp[0];
+				
+				
+				}
+			i++;
+			}
+			//System.out.println("Sunil Prashanth"+br.readLine());
+			
+						
+		}
+		catch(FileNotFoundException fnf)
+		{
+			System.out.println("File not found at the specified location");
+		}
+		
+		
+	}
+
+}

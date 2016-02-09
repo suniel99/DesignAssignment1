@@ -1,0 +1,79 @@
+package aAnalyze;
+
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+public class AnalyzeData {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame frame=new JFrame("Data Analysis");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(300,200);
+		frame.getContentPane().add(new MyComponent());
+		JPanel panel=new JPanel();
+		panel.setSize(200, 200);
+		frame.add(panel);
+	
+		addComponents(panel);
+		frame.setVisible(true);
+		
+		}
+
+	
+	public static void addComponents(JPanel panel)
+	{
+		panel.setLayout(null);
+	JLabel label1=new JLabel("Name");
+	label1.setBounds(10, 10, 80, 25);
+	panel.add(label1);
+	JLabel label2=new JLabel("Age");
+	label2.setBounds(10, 40, 80, 25);
+	panel.add(label2);
+	JTextField text1=new JTextField("Name");
+	label1.setBounds(125, 120, 20, 10);
+	panel.add(text1);
+	JButton button1=new JButton("Submit");
+	button1.setBounds(100, 200, 10, 5);
+	panel.add(button1);
+	}
+
+	  void MyComponent() {
+
+	  }
+	  public void paint(Graphics g) {
+		  
+	    drawPie((Graphics2D) g, Rectangle.getBounds(), sliceArray);
+	  }
+
+	  void drawPie(Graphics2D g, Rectangle area,ArrayList<Slice>  sliceArray) {
+	    double total = 0.0D;
+	    for (int i = 0; i < sliceArray.size(); i++) {
+	      total += Integer.parseInt(sliceArray.get(i).getApplicationRating()) ;
+	    }
+
+	    double curValue = 0.0D;
+	    int startAngle = 0;
+	    for (int i = 0; i < sliceArray.size(); i++) {
+	      startAngle = (int) (curValue * 360 / total);
+	      int arcAngle = (int) (Integer.parseInt(sliceArray.get(i).getApplicationRating()) * 360 / total);
+
+	      g.setColor(sliceArray.get(i).color);
+	      g.fillArc(area.x, area.y, area.width, area.height, startAngle, arcAngle);
+	      curValue += Integer.parseInt(sliceArray.get(i).getApplicationRating());
+	    }
+	  }
+	}

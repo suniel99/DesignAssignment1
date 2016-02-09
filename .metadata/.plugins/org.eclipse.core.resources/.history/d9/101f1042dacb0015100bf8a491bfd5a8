@@ -1,0 +1,13 @@
+package aAnalyze;
+
+import javax.swing.JFrame;
+
+public class Trigger {
+	   public static void triggerCall() {
+	      JFrame frame = new JFrame();
+	      System.out.println("Logger present here 1");
+	      frame.getContentPane().add(new MyComponent());
+	      frame.setSize(300, 200);
+	      frame.setVisible(true);
+	   }
+	}

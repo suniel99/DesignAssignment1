@@ -1,0 +1,35 @@
+package Scrape;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+//import org.jsoup.select.Elements;
+import Scrape.GenerateXML;
+
+public class ScrapeWebUrl {
+
+	public static void scrapeUrl(ArrayList<String> url){
+		Document doc;
+		
+		try {
+			System.out.println("url in Scrapeweburl is -->"+url );
+			doc=Jsoup.connect(url).get();
+			//Element div=doc.select("#offscreen-renderer").first();
+			Element test=doc.select("div.right-info span").first();
+			System.out.println("div to be printed : "+test);
+			System.out.println("final text is ---> "+test.text());
+			GenerateXML.writeXML("Instagram",test.text());
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+}

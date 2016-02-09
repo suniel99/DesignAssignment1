@@ -1,0 +1,50 @@
+package Scrape;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerFactory;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class generateXML {
+	public void writeXML(AppName,dataPoint,value)
+	{
+		try
+		{
+		DocumentBuilderFactory docFactory= DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder=DocumentBuilder.newDocumentBuilder();
+		
+		Document doc=docBuilder.newDocument();
+		Element rootElement=doc.createElement("Apps");
+		doc.appendChild(rootElement);
+		
+		Element app=doc.createElement("AppName");
+		doc.appendChild(app);
+		
+		Element dataPoint=doc.createElement("dataPoint");
+		doc.appendChild(dataPoint);
+		
+		Attr attr=doc.createAttribute("value");
+		attr.setValue(value);
+		dataPoint.setAttributeNode(attr);
+		
+		TransformerFactory transformerFactory=TransformerFactory.newInstance();
+		Transformer transformer=transformerFactory.newTransformer();
+		DOMSource source=new DOMSource(doc);
+		StreamResult result=new StreamResult(new File("C:\\Concordia\\SDM\\Assignment1\\"));
+		
+		transformer.transform(source,result);
+		
+		System.out.println("File saved");
+	}
+	catch (ParserConfigurationException pce) {
+		pce.printStackTrace();
+	  } catch (TransformerException tfe) {
+		tfe.printStackTrace();
+	  }
+
+}
+}
+

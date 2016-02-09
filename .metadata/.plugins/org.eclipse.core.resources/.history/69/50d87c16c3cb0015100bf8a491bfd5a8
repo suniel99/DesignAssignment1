@@ -1,0 +1,11 @@
+package aAnalyze;
+
+import java.util.ArrayList;
+
+public class AnalyzeData {
+
+	public void drawGraph(ArrayList<String> applicationName,ArrayList<String> applicationRating)
+	{
+		
+	}
+}
