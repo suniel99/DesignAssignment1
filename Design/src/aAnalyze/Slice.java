@@ -30,9 +30,17 @@ class Slice {
 		this.applicationRating=applicationRating;
 		
 	}
+	
+	
+	public ArrayList<String> getApplicationRating()
+	{
+		System.out.println("Time "+applicationRating);
+		return applicationRating;
+	}
    public void paint(Graphics g) {
 	   System.out.println("Logger present here 2"+applicationRating);
-      drawPie((Graphics2D) g, getBounds(), applicationRating);
+      getApplicationRating();
+	   drawPie((Graphics2D) g, getBounds(), applicationRating);
       //System.out.println("Logger present here 3");
       //System.out.println("applicationRating---->"+applicationRating);
    }

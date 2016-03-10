@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 //import java.util.Iterator;
 import java.util.Scanner;
+import java.util.logging.Logger;
+
 import Scrape.ScrapeWebUrl;
 public class ScrapeMain {
 
@@ -11,7 +13,7 @@ public class ScrapeMain {
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void scrape() throws IOException {
 		// TODO Auto-generated method stub
 		String filePath = "C:/Concordia/SDM/Assignment1/input";
 		try
@@ -25,6 +27,7 @@ public class ScrapeMain {
 		catch(FileNotFoundException fnf)
 		{
 			System.out.println("File not found at the specified location!");
+			
 		}
 	}
 
